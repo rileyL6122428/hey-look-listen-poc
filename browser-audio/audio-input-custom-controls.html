@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <figure>
+            <figcaption>
+                Listen to Godzilla:
+            </figcaption>
+            <!-- AUTOPLAY doesn't seem to work in chrome, but works in FireFox -->
+            <audio 
+                id="audio-player"
+                src="/Users/rileylittlefield/hey-look-listen/PoC/browser-audio/godzilla_roar.mp3">
+                Your browser does not support the <code>audio</code> element.
+            </audio>
+        </figure>
+
+        <div>
+            <button id="play-button">Play</button>
+            <button id="pause-button">Pause</button>
+            <button id="mute-button">Mute</button>
+        </div>
+
+        <div>
+            <label for="volume-slider">Volume</label>
+            
+            <input id="volume-slider"
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value="1"/>
+        </div>
+    </body>
+
+    <script>
+        const audioPlayer = document.getElementById('audio-player');
+        const playButton = document.getElementById('play-button');
+        const pauseButton = document.getElementById('pause-button');
+        const muteButton = document.getElementById('mute-button');
+        const volumeSlider = document.getElementById('volume-slider');
+
+        // debugger;
+        // console.log(audioPlayer);
+
+        playButton.onclick = () => {
+            audioPlayer.play();
+        };
+
+        pauseButton.onclick = () => {
+            audioPlayer.pause();
+        };
+
+        muteButton.onclick = () => {
+            if (audioPlayer.muted) {
+                audioPlayer.muted = false;
+                muteButton.innerText = 'Mute';
+            } else {
+                audioPlayer.muted = true;
+                muteButton.innerText = 'Unmute';
+            }
+        };
+        
+        volumeSlider.onchange = (event) => {
+            audioPlayer.volume = volumeSlider.value;
+        };
+        
+        audioPlayer.onloadedmetadata = (event) => {
+            console.log('METADATA LOADED', event);
+        };
+
+        audioPlayer.onplay = (event) => {
+            console.log('AUDIO PLAY STARTED', event);
+        };
+
+        audioPlayer.onpause = (event) => {
+            console.log('AUDIO PAUSED', event);
+        }
+
+        audioPlayer.onended = (event) => {
+            console.log('AUDIO ENDED', event);
+        };
+
+        audioPlayer.oncanplay = (event) => {
+            console.log('AUDIO CAN PLAY', event);
+        }
+
+        audioPlayer.oncanplaythrough = (event) => {
+            console.log('AUDIO CAN PLAY THROUGH', event);
+        }
+
+        audioPlayer.onvolumechange = (event) => {
+            console.log('VOLUME CHANGE', event);
+        }
+    </script>
+</html>
