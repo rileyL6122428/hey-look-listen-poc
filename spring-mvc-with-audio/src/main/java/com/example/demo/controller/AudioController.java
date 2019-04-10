@@ -20,4 +20,10 @@ public class AudioController {
 	public FileSystemResource getIMadeIt() {
 		return new FileSystemResource("/Users/rileylittlefield/hey-look-listen/PoC/browser-audio/panic-at-the-disco-hey-look-ma-i-made-it-official-video.mp3");
 	}
+	
+	@GetMapping(path="/crawl-outta-love", produces="audio/mpeg")
+	@ResponseBody
+	public FileSystemResource getCrawlOuttaLove() {
+		return new FileSystemResource("/Users/rileylittlefield/hey-look-listen/PoC/browser-audio/crawl-outta-love.mp3");
+	}
 }
