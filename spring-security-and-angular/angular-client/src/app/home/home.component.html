@@ -1,0 +1,11 @@
+<header>
+  <button *ngIf="!isLoggedIn" (click)="goToLogin()" role="link">Login</button>
+  <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+</header>
+<main>
+  <h1>Home Page</h1>
+
+  <button (click)="pingPublic()">Ping Public Button</button>
+  <button (click)="pingPrivate()">Ping Private Button</button>
+  <button (click)="pingPrivateScoped()">Ping Private-Scoped Button</button>
+</main>
